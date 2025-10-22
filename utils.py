@@ -100,9 +100,9 @@ def create_rag_chain(db_name):
 
     # すでに対象のデータベースが作成済みの場合は読み込み、未作成の場合は新規作成する
     if os.path.isdir(db_name):
-        db = Chroma(persist_directory=".db", embedding_function=embeddings)
+        db = Chroma(persist_directory=db_name, embedding_function=embeddings)
     else:
-        db = Chroma.from_documents(splitted_docs, embedding=embeddings, persist_directory=".db")
+        db = Chroma.from_documents(splitted_docs, embedding=embeddings, persist_directory=db_name)
     retriever = db.as_retriever(search_kwargs={"k": ct.TOP_K})
 
     question_generator_template = ct.SYSTEM_PROMPT_CREATE_INDEPENDENT_TEXT
@@ -207,9 +207,9 @@ def run_customer_doc_chain(param):
 
     return ai_msg["answer"]
 
-def run_product_doc_chain(param):
+def run_howto_doc_chain(param):
     """
-    商品に関するデータ参照に特化したTool設定用の関数
+    仕事の仕方に関するデータ参照に特化したTool設定用の関数
 
     Args:
         param: ユーザー入力値
@@ -217,14 +217,13 @@ def run_product_doc_chain(param):
     Returns:
         LLMからの回答
     """
-    # 商品に関するデータ参照に特化したChainを実行してLLMからの回答取得
-    ai_msg = st.session_state.product_doc_chain.invoke({"input": param, "chat_history": st.session_state.chat_history})
+    # 仕事の仕方に関するデータ参照に特化したChainを実行してLLMからの回答取得
+    ai_msg = st.session_state.howto_doc_chain.invoke({"input": param, "chat_history": st.session_state.chat_history})
 
     # 会話履歴への追加
     st.session_state.chat_history.extend([HumanMessage(content=param), AIMessage(content=ai_msg["answer"])])
 
     return ai_msg["answer"]
-
 
 def delete_old_conversation_log(result):
     """

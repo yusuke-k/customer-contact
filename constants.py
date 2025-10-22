@@ -61,9 +61,9 @@ LOG_FILE = "application.log"
 # ==========================================
 MODEL = "gpt-4o-mini"
 TEMPERATURE = 0.5
-CHUNK_SIZE = 500
-CHUNK_OVERLAP = 50
-TOP_K = 5
+CHUNK_SIZE = 300
+CHUNK_OVERLAP = 100
+TOP_K = 3
 RETRIEVER_WEIGHTS = [0.5, 0.5]
 
 
@@ -96,13 +96,13 @@ AI_AGENT_MAX_ITERATIONS = 5
 
 DB_SERVICE_PATH = "./.db_service"
 DB_CUSTOMER_PATH = "./.db_customer"
-DB_PRODUCT_PATH = "./.db_product"
+DB_HOWTO_PATH = "./.db_howto"
 
 DB_NAMES = {
     DB_COMPANY_PATH: f"{RAG_TOP_FOLDER_PATH}/company",
     DB_SERVICE_PATH: f"{RAG_TOP_FOLDER_PATH}/service",
     DB_CUSTOMER_PATH: f"{RAG_TOP_FOLDER_PATH}/customer",
-    DB_PRODUCT_PATH: f"{RAG_TOP_FOLDER_PATH}/product"
+    DB_HOWTO_PATH: f"{RAG_TOP_FOLDER_PATH}/howto"
 }
 
 AI_AGENT_MODE_ON = "利用する"
@@ -117,8 +117,8 @@ SEARCH_SERVICE_INFO_TOOL_NAME = "search_service_info_tool"
 SEARCH_SERVICE_INFO_TOOL_DESCRIPTION = "自社サービス「EcoTee」に関する情報を参照したい時に使う"
 SEARCH_CUSTOMER_COMMUNICATION_INFO_TOOL_NAME = "search_customer_communication_tool"
 SEARCH_CUSTOMER_COMMUNICATION_INFO_TOOL_DESCRIPTION = "顧客とのやりとりに関する情報を参照したい時に使う"
-SEARCH_PRODUCT_INFO_TOOL_NAME = "search_product_info_tool"
-SEARCH_PRODUCT_INFO_TOOL_DESCRIPTION = "EcoTeeが扱う商品に関する具体的な情報を参照したい時に使う"
+SEARCH_HOWTO_INFO_TOOL_NAME = "search_howto_info_tool"
+SEARCH_HOWTO_INFO_TOOL_DESCRIPTION = "この会社での仕事の仕方や業務手順に関する情報を参照したい時に使う"
 SEARCH_WEB_INFO_TOOL_NAME = "search_web_tool"
 SEARCH_WEB_INFO_TOOL_DESCRIPTION = "自社サービス「HealthX」に関する質問で、Web検索が必要と判断した場合に使う"
 
